@@ -29,3 +29,17 @@ spec:
             - name: "evaluation"
               properties:
                 timeframe: "2m"
+
+        - name: "remediation"
+          triggeredOn:
+            - event: "production.remediation.finished"
+              selector:
+                match:
+                  evaluation.result: "fail"
+          tasks:
+            - name: "get-action"
+            - name: "action"
+            - name: "test"
+            - name: "evaluation"
+              properties:
+                timeframe: "2m"
